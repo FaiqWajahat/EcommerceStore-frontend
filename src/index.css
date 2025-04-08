@@ -1,0 +1,32 @@
+:root {
+  font-family: "Poppins", serif;
+  font-optical-sizing: auto;
+  
+  
+ 
+  
+}
+/* Custom Scrollbar for Webkit Browsers */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e7eb; /* Light gray track */
+  border-radius: 10px; /* Rounded track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(221, 221, 221); /* Red scrollbar thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:gray; /* Darker red on hover */
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
