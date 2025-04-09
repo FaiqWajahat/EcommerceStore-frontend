@@ -360,13 +360,13 @@
     gender: "Men",
     images: [
       {
-        url: "https://m.media-amazon.com/images/I/71nRFuL2fVL._SX679_.jpg",
+        url: "https://m.media-amazon.com/images/I/614vHBCN3qL._SY879_.jpg",
         altText: "Tapered Sweatpants Front View",
       },
-      ,
+      
       {
-        url: "https://m.media-amazon.com/images/I/71mp1goD7VL._SX679_.jpg",
-        altText: "Polo T-Shirt Back View",
+        url: "https://m.media-amazon.com/images/I/718Sp6BpJPL._SY879_.jpg",
+        altText: "Back View",
       },
     ],
     rating: 4.3,
@@ -392,7 +392,7 @@
         url: "https://m.media-amazon.com/images/I/81WzIbilc9L._SY879_.jpg",
         altText: "Denim Jeans Front View",
       },
-      ,
+      
       {
         url: "https://m.media-amazon.com/images/I/8137Bu8s4jL._SY879_.jpg",
         altText: "Denim Jeans Back View",
@@ -737,11 +737,11 @@
     gender: "Women",
     images: [
       {
-        url: "https://m.media-amazon.com/images/I/71S2xGsSyiL._SY879_.jpg",
+        url: "https://m.media-amazon.com/images/I/619TXlCTyQL._SY879_.jpg",
         altText: "Paperbag Waist Shorts Front View",
       },
       {
-        url: "https://m.media-amazon.com/images/I/71a7UZCAjpL._SY879_.jpg",
+        url: "https://m.media-amazon.com/images/I/61OIE8RW7OL._SY879_.jpg",
         altText: "Polo T-Shirt Back View",
       },
     ],
@@ -877,12 +877,12 @@
     gender: "Women",
     images: [
       {
-        url: "https://m.media-amazon.com/images/I/51+6v6RneRL.jpg",
+        url: "https://m.media-amazon.com/images/I/71NSUzYyLaL._SY879_.jpg",
         altText: "Boho Floral Blouse",
       },
       {
-        url: "https://m.media-amazon.com/images/I/61sIpVYhY4L._SX679_.jpg",
-        altText: "Polo T-Shirt Back View",
+        url: "https://m.media-amazon.com/images/I/71x1qi3xoRL._SY879_.jpg",
+        altText: "Back View",
       },
     ],
     rating: 4.7,

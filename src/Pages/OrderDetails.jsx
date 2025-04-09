@@ -76,10 +76,10 @@ export default function OrderDetails() {
         Your Order Details!
       </h1>
       <div className="p-6 rounded-lg border shadow-md">
-        <h2 className="text-xl font-semibold tracking-tight my-4">
+        <h2 className="  md:text-xl font-semibold tracking-tight my-4 text-center">
           ORDER ID: {orderDetails._id}
         </h2>
-        <div className="flex justify-between mb-8 pb-6 border-b">
+        <div className="flex justify-between items-center flex-col  md:flex-row gap-4 md:gap-0 mb-8 pb-6 border-b">
           {/* Order Date */}
           <div>
             <p className="text-gray-500">
@@ -100,11 +100,11 @@ export default function OrderDetails() {
         <div className="mb-8 pb-6 border-b">
           {orderDetails.checkoutItems?.length > 0 ? (
             orderDetails.checkoutItems.map((item) => (
-              <div key={item.id} className="flex items-center mb-4">
+              <div key={item.id} className="flex flex-col md:flex-row text-center md:text-start justify-center items-center mb-4">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-16 h-16 object-cover rounded-md mr-4"
+                  className="w-20  object-fill  rounded-md mr-4"
                 />
                 <div>
                   <h4 className="text-md font-semibold">{item.name}</h4>
@@ -112,7 +112,7 @@ export default function OrderDetails() {
                     {item.color} | {item.size}
                   </p>
                 </div>
-                <div className="ml-auto text-right">
+                <div className="ml-auto text-right flex md:flex-col w-full justify-center gap-3 md:gap-0 mt-4 md:mt-0">
                   <p className="text-md">${item.price}</p>
                   <p className="text-sm text-gray-500">QTY: {item.quantity}</p>
                 </div>
@@ -123,14 +123,14 @@ export default function OrderDetails() {
           )}
         </div>
         {/* Payment and Delivery Info */}
-        <div className="grid grid-cols-2 justify-between pb-6 mb-8 border-b">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0 justify-between items-center pb-6 mb-8 border-b">
           {/* Payment Info */}
-          <div>
+          <div className="mx-auto text-center">
             <h4 className="text-lg font-semibold mb-2">Payment</h4>
             <p className="text-gray-600">Debit/Credit card</p>
-          </div>
+          </div >
           {/* Delivery Info */}
-          <div>
+          <div className="mx-auto text-center">
             <h4 className="text-lg font-semibold mb-2">Delivery</h4>
             <p className="text-gray-600">{orderDetails.shippingAddress?.address}</p>
             <p className="text-gray-600">
@@ -140,15 +140,15 @@ export default function OrderDetails() {
           </div>
         </div>
         {/* Buttons */}
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <button
-            className="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
+            className=" hidden md:block px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition"
             onClick={() =>navigate("/profile")}
           >
             Go to Profile
           </button>
           <button
-            className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+            className="mx-auto md:mx-0 px-6 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
             onClick={() => navigate('/') }
           >
             Continue Shopping
