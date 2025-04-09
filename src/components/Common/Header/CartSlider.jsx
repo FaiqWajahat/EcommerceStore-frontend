@@ -37,6 +37,7 @@ export default function CartSlider() {
     else
     {
       handleError("Login to checkout")
+      navigate("/login")
     }
    
   };

@@ -4,8 +4,8 @@ import { redirect, useNavigate } from 'react-router-dom'
 export default function PaymentSuccess() {
     const redirect=useNavigate();
 return (
-    <div className='w-full min-h-screen flex justify-center items-center bg-gradient-to-r from-green-400 to-blue-500'>
-        <div className='w-11/12 md:w-1/2 lg:w-1/3 p-6 bg-white rounded-lg shadow-lg'>
+    <div className='w-full min-h-screen flex justify-center items-center '>
+        <div className='w-11/12 md:w-1/2 lg:w-1/3 p-6 bg-white rounded-lg shadow-2xl'>
             <div className='flex justify-center mb-4'>
                 <svg
                     xmlns='http://www.w3.org/2000/svg'
