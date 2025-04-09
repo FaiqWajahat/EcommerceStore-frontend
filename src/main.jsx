@@ -37,7 +37,7 @@ let allRoutes = createBrowserRouter([
       { path:"/orderDetails/:id", element:<OrderDetails/>},
       { path:"/search" , element:<Search/>},
       {path:"/paymentSuccess", element:<PaymentSuccess/>},
-        {path:"/paymentFailed", element:<PaymentFailed/>},
+      {path:"/paymentFailed", element:<PaymentFailed/>},
     ],
   },
 ])

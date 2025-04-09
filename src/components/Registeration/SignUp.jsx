@@ -133,9 +133,9 @@ export default function SignUp() {
                 </div>
               </div>
               <input
-                className="w-full rounded-md block bg-black text-white text-center py-2 hover:cursor-pointer hover:opacity-80"
+                className={`w-full rounded-md block bg-black text-white text-center py-2 hover:cursor-pointer hover:opacity-80 ${isSigning?"opacity-80":""}`}
                 type="submit"
-                value="Register"
+                value={`${isSigning?"Processing...":"Register"}`}
                 disabled={isSigning}
               />
 

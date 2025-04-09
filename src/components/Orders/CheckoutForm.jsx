@@ -64,7 +64,7 @@ export default function CheckoutForm() {
       setLoading(true);
   
       const stripe = await loadStripe("pk_test_51R69t62ML9Uo6lrtxgXbKk6e1PLTCJ8D0S7rKWgqNPCLbt2sPQi73P4nqAQlnMPMKSUkp9zlpKmyAtViNkA4mXTx00zAIydbAt");
-     const  baseURL=  "https://backend-gik1.onrender.com"
+      const  baseURL=  "https://backend-gik1.onrender.com"
       const response = await fetch(`${baseURL}/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ export default function CheckoutForm() {
       const data = await response.json(); 
   
       if (data.success) {
-        handleSuccess(data.message);
+        handleSuccess("Redirecting to Payment..");
         setCart([]);
         const session = await stripe.redirectToCheckout({
           sessionId: data.sessionId,
@@ -263,8 +263,9 @@ export default function CheckoutForm() {
           <div className="w-full mt-4 ">
             <input
               type="submit"
-              className={`w-full bg-black text-white font-semibold py-2 hover:opacity-70 tracking-normal cursor-pointer ${loading?"opacity-90":""}`}
+              className={`w-full bg-black text-white font-semibold py-2 hover:opacity-70 tracking-normal cursor-pointer ${loading?"bg-opacity-70":""}`}
               value={loading?"Processing":"Continue to process"}
+              disabled={loading}
             />
           </div>
         </form>

@@ -8,7 +8,8 @@ export default function MainCategories() {
   return (
     <>
       <section className="grid grid-cols-1  md:grid-cols-2 justify-between w-full  mt-5 px-4 md:px-16 lg:px-24 gap-5">
-        <div className="w-full relative overflow-hidden">
+        <div className="w-full relative overflow-hidden"
+        onClick={()=>{redirect("collection/Women"); window.scrollTo(0,0)}}>
           <img
             src={womensCollection}
             alt="MensCategoryimg"
@@ -21,12 +22,13 @@ export default function MainCategories() {
             <h2 className="text-bold font-bold md:text-xl tracking-tighter text-base ">
               Women's Collection
             </h2>
-            <button onClick={()=>{redirect("collection/Women"); window.scrollTo(0,0)}} className="bg-none font-bold underline text-sm">
+            <button  className="bg-none font-bold underline text-sm">
               Shop Now
             </button>
           </div>
         </div>
-        <div className="w-full h-auto  relative overflow-hidden">
+        <div className="w-full h-auto  relative overflow-hidden"
+        onClick={()=>{redirect("collection/Men"); window.scrollTo(0,0)}}>
           <img
             src={mensCollection}
             alt="MensCategoryimg"
@@ -39,7 +41,7 @@ export default function MainCategories() {
             <h2 className="text-bold font-bold md:text-xl text-base ">
               Men's Collection
             </h2>
-            <button onClick={()=>{redirect("collection/Men"); window.scrollTo(0,0)}} className="bg-none font-bold underline text-sm">
+            <button  className="bg-none font-bold underline text-sm">
               Shop Now{" "}
             </button>
           </div>

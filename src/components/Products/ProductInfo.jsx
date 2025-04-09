@@ -19,7 +19,8 @@ export default function ProductInfo({ sku }) {
   }, [cart]);
 
   let [count, setCount] = useState(0);
-  let [Color, setColor] = useState(null);
+  let [Color, setColor] = useState( data[0].colors[0].toLocaleLowerCase());
+  
 
   let [Size, setSize] = useState("M");
 

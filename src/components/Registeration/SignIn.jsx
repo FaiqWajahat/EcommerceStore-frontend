@@ -133,9 +133,9 @@ export default function SignIn() {
                 </div>
               </div>
               <input
-                className="w-full rounded-md block bg-black text-white text-center py-2 hover:cursor-pointer hover:opacity-80"
+                className={`w-full rounded-md block bg-black text-white text-center py-2 hover:cursor-pointer hover:opacity-80 ${isLogging?"opacity-80":""}`}
                 type="submit"
-                value="Login"
+                value={`${isLogging?"Processing...":"Login"}`}
                 disabled={isLogging}
               />
 
