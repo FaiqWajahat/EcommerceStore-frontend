@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CartContext } from "../Context/Cart";
 
 const AllOrders = () => {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const [allOrders, setAllOrders] = useState([]);
   const [fetchData, setFetchData] = useState(false);
   useEffect(() => {
@@ -10,7 +14,7 @@ const AllOrders = () => {
   const getOrders = async () => {
     setFetchData(true)
     try {
-      const baseURL = "http://localhost:8080";
+      
       const response = await fetch(`${baseURL}/admin/getOrders`, {
         method: "GET",
         headers: {
@@ -58,6 +62,7 @@ const AllOrders = () => {
                   user={order.email}
                   total={order.totalPrice}
                   status={order.status}
+                  baseURL={baseURL}
                 />
               ))
             ) : (
@@ -78,12 +83,12 @@ const AllOrders = () => {
   );
 };
 
-const OrderRow = ({ id, user, total, status, setAllOrders, allOrders }) => {
+const OrderRow = ({ id, user, total, status, setAllOrders, allOrders,baseURL }) => {
   const [orderStatus, setOrderStatus] = useState(status);
 
   const updateOrder = async (orderId, orderStatus) => {
     try {
-      const baseURL = "http://localhost:8080";
+     
       const response = await fetch(`${baseURL}/admin/updateOrder`, {
         method: "PUT",
         headers: {

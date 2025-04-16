@@ -1,12 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
+import { useState  } from "react";
 import login from "../../assets/login.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { handleError, handlePromiss, handleSuccess } from "../../Notify";
+import { handleError, handlePromiss,  } from "../../Notify";
+import { CartContext } from "../Context/Cart";
 
 export default function SignUp() {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const navigate = useNavigate();
   let [seen, setSeen] = useState(false);
   let [SignupInfo, setSignupinfo] = useState({
@@ -37,7 +41,7 @@ export default function SignUp() {
 
     try {
       setIsSigning(true)
-     const  baseURL= "https://backend-gik1.onrender.com"
+    
       const response = await fetch(`${baseURL}/signup`, {
         method: "POST",
         headers: {

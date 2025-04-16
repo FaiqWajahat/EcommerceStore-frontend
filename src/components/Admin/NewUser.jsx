@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { handleError, handleSuccess } from "../../Notify";
+import { CartContext } from "../Context/Cart";
 
 const NewUser = () => {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,7 +35,7 @@ const NewUser = () => {
     }
     setFetchData(true);
     try {
-      const baseURL = "http://localhost:8080";
+      
       const response = await fetch(`${baseURL}/signup`, {
         method: "POST",
         headers: {

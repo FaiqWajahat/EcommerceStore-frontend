@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import login from "../../assets/login.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import {handleError, handlePromiss} from "./../../Notify"
+import { CartContext } from "../Context/Cart";
 
 export default function SignIn() {
+  const state=useContext(CartContext);
+  const baseURL=state.baseUrl
+   
   const token=  localStorage.getItem('userToken')
   console.log(token);
   const navigate = useNavigate();
@@ -31,7 +35,7 @@ export default function SignIn() {
     console.log(loginInfo);
 
     try {
-       const  baseURL= "https://backend-gik1.onrender.com"
+     
       
       const response = await fetch(`${baseURL}/login`, {
         method: "POST",

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { tr } from "date-fns/locale";
+import { CartContext } from "../Context/Cart";
 
 export default function ProfileOrders({ userEmail }) {
   const [myOrders, setMyOrders] = useState([]);
   const [fetchingData ,setFetchingData]=useState(false)
   const navigate = useNavigate();
-
+  const state=useContext(CartContext);
+  const baseURL=state.baseUrl
  
 
   const fetchData = async () => {
@@ -17,7 +19,7 @@ export default function ProfileOrders({ userEmail }) {
         return;
       }
       setFetchingData(true)
-      const  baseURL= "https://backend-gik1.onrender.com"
+     
 
       const response = await fetch(`${baseURL}/myOrders`, {
         method: "POST",

@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { handleError } from "../../Notify";
 import { toast } from "react-hot-toast";
 import { FaExclamationTriangle } from "react-icons/fa";
+import { CartContext } from "../Context/Cart";
 const RegisterdUsers = () => {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const [allUsers, setAllUsers] = useState([]);
   const [fetchData, setFetchData] = useState(false);
   
@@ -12,7 +16,7 @@ const RegisterdUsers = () => {
 
   const getUsers = async () => {
     try {
-      const baseURL = "http://localhost:8080";
+    
       const response = await fetch(`${baseURL}/admin/getUsers`, {
         method: "GET",
         headers: {
@@ -75,6 +79,9 @@ const RegisterdUsers = () => {
   
   
   const removeUser = async (userEmail) => {
+    const state=useContext(CartContext);
+      const baseURL=state.baseUrl
+     
   const answer =await  showConfirmationToast();
   if(!answer)
   {
@@ -82,7 +89,7 @@ const RegisterdUsers = () => {
   }
     setFetchData(true)
     try {
-      const baseURL = "http://localhost:8080";
+     
   
       const response = await fetch(`${baseURL}/admin/deleteUser`, {
         method: "PUT",

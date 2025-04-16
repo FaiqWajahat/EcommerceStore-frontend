@@ -1,9 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsX } from "react-icons/bs";
 import { FaFileImage } from "react-icons/fa6";
 import { handleError, handleSuccess } from "../../Notify";
+import { CartContext } from "../Context/Cart";
 
 const AddProduct = () => {
+  const state=useContext(CartContext);
+   const baseURL=state.baseUrl
+   
   const [imagePreview, setImagePreview] = useState([]);
   const [fetchData,setFetchData]=useState(false)
   const fileInputRef = useRef();
@@ -68,7 +72,7 @@ const AddProduct = () => {
       return;
     }
     setFetchData(true)
-    const baseURL = "http://localhost:8080";
+   
     try{
          const response = await fetch(`${baseURL}/admin/addProduct`, {
            method: "POST",

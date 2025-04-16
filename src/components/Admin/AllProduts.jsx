@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { handleError } from "../../Notify";
 import { toast } from "react-hot-toast";
 import { FaExclamationTriangle } from "react-icons/fa";
+import { CartContext } from "../Context/Cart";
 
 const AllProducts = () => {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const [allProducts, setAllProducts] = useState([]);
   const [fetchData, setFetchData] = useState(false);
 
   const getProducts = async () => {
     setFetchData(true);
     try {
-      const baseURL = "http://localhost:8080";
+     
       const response = await fetch(`${baseURL}/admin/getProducts`, {
         method: "GET",
         headers: {
@@ -83,10 +87,13 @@ const AllProducts = () => {
 
 const StockDisplay = ({ sku, stock,getProducts,fetchData,setFetchData }) => {
   const [orderStock, setOrderStock] = useState(stock);
+  const state=useContext(CartContext);
+  const baseURL=state.baseUrl
+   
 
   const updateStock = async (productSku, productStock) => {
     try {
-      const baseURL = "http://localhost:8080";
+      
       const response = await fetch(`${baseURL}/admin/updateStock`, {
         method: "PUT",
         headers: {
@@ -157,7 +164,7 @@ const StockDisplay = ({ sku, stock,getProducts,fetchData,setFetchData }) => {
     }
     setFetchData(true);
     try {
-      const baseURL = "http://localhost:8080";
+     
 
       const response = await fetch(`${baseURL}/admin/deleteProduct`, {
         method: "PUT",

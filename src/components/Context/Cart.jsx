@@ -5,12 +5,12 @@ export const CartProvider= (props)=>{
     const [cart , setCart]= useState([]);
     const [search,setSearch]=useState("");
     const [ products,setProducts]=useState([])
-
+    const baseUrl='https://e-commerce-backend-2m6p.onrender.com'
     const getProducts = async () => {
     
         try {
-          const baseURL = "http://localhost:8080";
-          const response = await fetch(`${baseURL}/admin/getProducts`, {
+         
+          const response = await fetch(`${baseUrl}/admin/getProducts`, {
             method: "GET",
             headers: {
               "CONTENT-TYPE": "application/json",
@@ -30,7 +30,7 @@ export const CartProvider= (props)=>{
         getProducts();
       },[])
     return(
-    <CartContext.Provider  value={{cart,setCart, search,setSearch,products}}>
+    <CartContext.Provider  value={{cart,setCart, search,setSearch,products, baseUrl}}>
         {props.children}
     </CartContext.Provider>
     )

@@ -1,8 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../Context/Cart';
 
 const DashBoardOrders = () => {
-
+const state=useContext(CartContext);
+  const baseURL=state.baseUrl
+ 
 const [recentOrders,setRecentOrders]=useState([])
 const [fetchData,setFetchData]=useState(false)
 
@@ -12,7 +15,7 @@ useEffect(()=>{
   const getOrders = async () => {
    setFetchData(true)
     try {
-      const baseURL = "http://localhost:8080";
+     
       const response = await fetch(`${baseURL}/admin/getRecentOrders`, {
         method: "GET",
         headers: {

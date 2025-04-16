@@ -1,9 +1,13 @@
 import { FaDollarSign, FaUsers, FaShoppingCart, FaBoxOpen } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CountUp from 'react-countup';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../Context/Cart';
 
 const DashBoardStats = () => {
+  const state=useContext(CartContext);
+    const baseURL=state.baseUrl
+   
   const [allUsers, setAllUsers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [allProduct, setAllProducts] = useState([]);
@@ -29,7 +33,7 @@ const DashBoardStats = () => {
     />
   );
 
-  const baseURL = 'http://localhost:8080';
+  
 
   const fetchRevenue = async () => {
     try {
