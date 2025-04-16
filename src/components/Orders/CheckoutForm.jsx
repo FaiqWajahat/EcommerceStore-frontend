@@ -10,6 +10,7 @@ export default function CheckoutForm() {
 
   const cartState = useContext(CartContext);
   const checkoutItems = cartState.cart;
+  const baseURL=cartState.baseUrl
   const setCart=cartState.setCart;
   const token = localStorage.getItem("userToken");
   const [email, setEmail] = useState("");
@@ -75,8 +76,8 @@ export default function CheckoutForm() {
       setLoading(true);
   
       const stripe = await loadStripe("pk_test_51R69t62ML9Uo6lrtxgXbKk6e1PLTCJ8D0S7rKWgqNPCLbt2sPQi73P4nqAQlnMPMKSUkp9zlpKmyAtViNkA4mXTx00zAIydbAt");
-      // const  baseURL=  "https://backend-gik1.onrender.com"
-       const baseURL="http://localhost:8080"
+     
+    
       const response = await fetch(`${baseURL}/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
