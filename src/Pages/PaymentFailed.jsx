@@ -5,8 +5,8 @@ export default function PaymentFailed() {
   const redirect = useNavigate();
   return (
     <div>
-      <div className="w-full min-h-screen flex justify-center items-center bg-gradient-to-r from-red-400 to-red-500">
-        <div className="w-11/12 md:w-1/2 lg:w-1/3 p-6 bg-white rounded-lg shadow-lg">
+      <div className="w-full min-h-screen flex justify-center items-center ">
+        <div className="w-11/12 md:w-1/2 lg:w-1/3 p-6 bg-white rounded-lg shadow-xl">
           <div className="flex justify-center mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"

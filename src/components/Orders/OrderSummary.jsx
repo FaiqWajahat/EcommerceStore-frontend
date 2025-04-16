@@ -10,26 +10,15 @@ export default function OrderSummary() {
   }, [cart]);
 
   let total = () => {
-    if (cart.length < 1) {
-      return 0;
-    }
-    let sumPrice = 0;
-    let sumQuantity = 0;
-    let result=0;
-
-    cart.forEach((v) => {
-      sumPrice = sumPrice + v.price;
-    });
-
-    cart.forEach((v) => {
-      sumQuantity = sumQuantity + v.quantity;
-    });
-
-    result= sumPrice * sumQuantity;
-    result= Math.round(result*100)/100
-    return result;
+    if (!cart || cart.length < 1) return 0;
+  
+    let result = cart.reduce((acc, item) => {
+      return acc + (item.price * item.quantity);
+    }, 0);
+  
+    return Math.round(result * 100) / 100; // Round to 2 decimal places
   };
-
+  
   return (
     <>
       <div className="bg-slate-50 w-full py-4 lg:px-4  ">

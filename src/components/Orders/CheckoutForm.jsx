@@ -25,6 +25,17 @@ export default function CheckoutForm() {
     phone: "",
   });
 
+  let total = () => {
+    if (!checkoutItems || checkoutItems.length < 1) return 0;
+  
+    let result = checkoutItems.reduce((acc, item) => {
+      return acc + (item.price * item.quantity);
+    }, 0);
+  
+    return Math.round(result * 100) / 100; // Round to 2 decimal places
+  };
+  
+
   useEffect(() => {
     if (token) {
       try {
@@ -64,7 +75,8 @@ export default function CheckoutForm() {
       setLoading(true);
   
       const stripe = await loadStripe("pk_test_51R69t62ML9Uo6lrtxgXbKk6e1PLTCJ8D0S7rKWgqNPCLbt2sPQi73P4nqAQlnMPMKSUkp9zlpKmyAtViNkA4mXTx00zAIydbAt");
-      const  baseURL=  "https://backend-gik1.onrender.com"
+      // const  baseURL=  "https://backend-gik1.onrender.com"
+       const baseURL="http://localhost:8080"
       const response = await fetch(`${baseURL}/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,8 +84,11 @@ export default function CheckoutForm() {
           email,
           checkoutItems,
           shippingAddress,
+          totalPrice:total()
         }),
       });
+
+     
   
       const data = await response.json(); 
   

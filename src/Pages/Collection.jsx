@@ -1,30 +1,38 @@
 import React from "react";
 import { FaFilter } from "react-icons/fa6";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import FilterItems from "../components/CollectionItems/FilterItems";
 import SimilarProduct from "../components/Products/SimilarProduct";
 import SortOptions from "../components/CollectionItems/SortOptions";
 import Pagination from "../components/Products/Pagination";
-import products from "../data/products";
+
+// import products from "../data/products";
 import { useParams, useSearchParams } from "react-router-dom";
+import { CartContext } from "../components/Context/Cart";
 
 
 export default function Collection() {
+
+  const state=useContext(CartContext)
+  const product=state.products;
   const {gender}=useParams()
-  const [heading,setHeading]=useState();
+ 
   const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState(Object.fromEntries([...searchParams]));
-  
+
+
+
   // ✅ Update filters when searchParams change
   useEffect(() => {
     setFilters(Object.fromEntries([...searchParams]));
   }, [searchParams]);
 
+
  
  
   
   // ✅ Ensure 'products' exists before filtering
-  const filteredProducts = (products ?? []).filter((product) => {
+  const filteredProducts = (product ?? []).filter((product) => {
     const selectedCategory = filters.category || null;
     const selectedWear = filters.wear || null;
     const selectedSizes = filters.size ? filters.size.split(",") : [];

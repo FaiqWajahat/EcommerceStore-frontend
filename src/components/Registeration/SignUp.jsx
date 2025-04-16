@@ -18,6 +18,22 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(SignupInfo);
+        if(!SignupInfo.name)
+        {
+          handleError("Name is required")
+          return
+        }
+    
+        if(!SignupInfo.email)
+        {
+          handleError("Email is required");
+          return;
+        }
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(SignupInfo.password)) {
+          handleError("Password must contain at least: 1 uppercase, 1 lowercase, 1 number, and 1 special character (@$!%*?&)");
+          return;
+        }
 
     try {
       setIsSigning(true)

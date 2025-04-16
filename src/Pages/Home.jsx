@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Hero from "../components/Home/Hero";
 import MainCategories from "../components/Home/MainCategories";
 import NewArrivals from "../components/Products/NewArrivals";
@@ -6,12 +6,15 @@ import ProductDetails from "../components/Products/BestSeller";
 import SimilarProduct from "../components/Products/SimilarProduct";
 import Branding from "../components/Home/Branding";
 import FeatureServices from "../components/Home/FeatureServices";
-import products from "../data/products";
+import { CartContext } from "../components/Context/Cart";
 
 
 export default function Home() {
+
+  const state= useContext(CartContext);
+  const products=state?.products;
   let firstIndex = Math.floor(Math.random() * (products.length - 12 + 1)); 
-let lastIndex = firstIndex + 12; 
+  let lastIndex = firstIndex + 12; 
 
 let data = products.slice(firstIndex, lastIndex);
   return (

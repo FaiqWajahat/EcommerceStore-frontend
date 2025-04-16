@@ -1,12 +1,11 @@
-
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function SortOptions() {
-  const [searchParams, setSearchParams]=useSearchParams();
-  const [selectedOption, setSelectedOption] = useState("");
+     const [searchParams, setSearchParams]=useSearchParams();
+    const [selectedOption, setSelectedOption] = useState("");
 
-  const handleChange = (event) => {
+    const handleChange = (event) => {
     setSelectedOption(event.target.value);
     searchParams.set('sortBy',selectedOption);
     setSearchParams(searchParams);

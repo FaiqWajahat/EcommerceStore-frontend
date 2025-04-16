@@ -57,7 +57,9 @@ export default function SignIn() {
         localStorage.setItem("userToken",token)
         setTimeout(() => {
           navigate("/");
+          window.scrollTo(0,0)
         }, 1000);
+        
       } else if (error) {
         handleError(error);
       } else {

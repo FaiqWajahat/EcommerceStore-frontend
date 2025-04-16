@@ -6,10 +6,11 @@ import { RiMenu3Line } from "react-icons/ri";
 import { useState } from "react";
 import { FiUser, FiUserCheck } from "react-icons/fi";
 import MobileCategoriesSlider from "./MobileCategoriesSlider";
+import { jwtDecode } from "jwt-decode";
 
 
 export default function Navbar() {
-  const token = localStorage.getItem("userToken");
+ 
   const { pathname } = useLocation();
 
   console.log(pathname);
@@ -20,12 +21,36 @@ export default function Navbar() {
   };
   useEffect(()=>{
     console.log(pathname)
+    AuthenticateUser()
   },[pathname])
+
+  const [tokenGet,setTokenGet]=useState(false)
+  const [userRole,setUserRole]=useState("customer")
+  const AuthenticateUser= ()=>{
+          const token =  localStorage.getItem("userToken");
+          if(token)
+          {
+            const decodedToken = jwtDecode(token);
+          if(decodedToken)
+          {
+             setTokenGet(true)
+             console.log(decodedToken)
+             
+             setUserRole(decodedToken.name)
+             console.log(userRole)
+          }
+          
+          }
+          
+  }
+  
+
+  
   return (
     <>
       <nav className="flex items-center justify-between py-2 px-4 ">
         <Link to={"/"}>
-          <h1 className="text-2xl font-bold cursor-pointer">E-commerce</h1>
+          <h1 className="text-xl md:text-2xl font-bold cursor-pointer tracking-tighter md:tracking-normal">E-commerce</h1>
         </Link>
         <div className="hidden md:flex space-x-4 text-center ">
           <Link
@@ -63,9 +88,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex space-x-3 md:space-x-4">
+        <div className="flex space-x-3  md:space-x-4 items-center">
+          <Link  to={'/adminDashboard'} className={`text-white bg-black text-xs text-center px-2 py-1 rounded-sm hover:bg-opacity-80 ${userRole==="Admin"?"block":"hidden"}` }>
+          admin
+          </Link>
           <Link to={"/login"}>
-            {token ? (
+            {tokenGet ? (
               <FiUserCheck className="h-6 w-6 text-red-600" />
             ) : (
               <FiUser className="h-6 w-6 " />

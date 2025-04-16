@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "../Context/Cart";
 import toast from "react-hot-toast";
-import products from "../../data/products";
+// import products from "../../data/products";
 import { handleError, handlePromiss } from "../../Notify";
 
 export default function ProductInfo({ sku }) {
-  let data = products.filter((product) => product.sku === sku);
+
+  const state=useContext(CartContext)
+   const product=state.products;
+  let data = product?.filter((product) => product.sku === sku);
   let cartState = useContext(CartContext);
   let cart = cartState.cart;
   let setCart = cartState.setCart;
@@ -18,8 +21,16 @@ export default function ProductInfo({ sku }) {
     console.log("Updated Cart:", cart);
   }, [cart]);
 
+  let [Color, setColor] = useState("");
+  useEffect(() => {
+    if (data?.length > 0 && data[0].colors?.length > 0) {
+      setColor(data[0].colors[0].toLowerCase());
+    }
+  }, [data]);
+
+  console.log(data)
   let [count, setCount] = useState(0);
-  let [Color, setColor] = useState( data[0].colors[0].toLocaleLowerCase());
+  
   
 
   let [Size, setSize] = useState("M");
@@ -36,7 +47,7 @@ export default function ProductInfo({ sku }) {
       size: Size,
       color: Color,
       quantity: Quantity,
-      price: data[0].discountPrice,
+      price: data[0].price||data[0].discountPrice,
       image: data[0].images[0].url,
     };
 
@@ -123,11 +134,9 @@ export default function ProductInfo({ sku }) {
             {product.name}
           </h2>
           <div className="flex gap-4">
-            <span className="font-base font-light text-slate-500 line-through">
-              ${product.price}
-            </span>
+           
             <span className="text-base text-red-700 font-semibold">
-              ${product.discountPrice}
+              ${product.price||product.discountPrice}
             </span>
           </div>
           <p className="text-black text-sm tracking-tighter">

@@ -14,7 +14,7 @@ export default function SimilarProduct({ data }) {
     const timer = setTimeout(() => {
       setProducts([...data]); // Simulate fetching new data
       setLoading(false); // Stop loading when products are set
-    }, 1000);
+    },1000);
 
     return () => clearTimeout(timer); // Cleanup timeout on unmount or re-run
   }, [searchParams,data]); // Trigger effect when searchParams change
@@ -25,7 +25,7 @@ export default function SimilarProduct({ data }) {
         {loading ? (
           <p className="text-xl ">Loading...</p>
         ) : products.length > 0 ? (
-          products.map((product, index) => (
+             products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))
         ) : (
@@ -54,7 +54,7 @@ const ProductCard = ({ product }) => {
         <div className="ml-1 py-2">
           <h3 className="font-semibold tracking-tighter">{product.name}</h3>
           <p className="tracking-tighter text-red-700 ">
-            ${product.discountPrice}
+            ${product.price||product.discountPrice}
           </p>
         </div>
       </div>

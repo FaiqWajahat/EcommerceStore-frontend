@@ -57,8 +57,8 @@ export default function ProductDetails() {
       size: Size,
       color: Color,
       quantity: Quantity,
-      price: data[0].price,
-      discountPrice: data[0].discountPrice,
+      price: data[0].discountPrice,
+      
       image: data[0].images[0].url,
     };
 
