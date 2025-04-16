@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { handleError } from "../Notify";
 import { FaArrowLeft, FaShoppingBag, FaHome, FaUser, FaBox, FaCreditCard, FaTruck } from "react-icons/fa";
 import { FiPackage } from "react-icons/fi";
 import { BsCalendarDate } from "react-icons/bs";
+import { CartContext } from "../components/Context/Cart";
 
 export default function OrderDetails() {
+  const state=useContext(CartContext);
+  const baseURL= state.baseUrl
   const navigate = useNavigate();
   const { id } = useParams();
   const orderId = id || "";
@@ -21,8 +24,7 @@ export default function OrderDetails() {
         return;
       }
 
-      const baseUrl = "https://backend-gik1.onrender.com";
-      const response = await fetch(`${baseUrl}/orderDetails`, {
+      const response = await fetch(`${baseURL}/orderDetails`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

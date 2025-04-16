@@ -17,6 +17,7 @@ export default function SignUp() {
     name: "",
     email: "",
     password: "",
+    role:"customer"
   });
   let [isSigning,setIsSigning]=useState(false)
   const handleSubmit = async (e) => {
