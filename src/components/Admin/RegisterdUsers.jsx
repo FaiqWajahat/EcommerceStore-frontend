@@ -4,8 +4,9 @@ import { toast } from "react-hot-toast";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { CartContext } from "../Context/Cart";
 const RegisterdUsers = () => {
+
   const state=useContext(CartContext);
-    const baseURL=state.baseUrl
+  const baseURL=state.baseUrl
    
   const [allUsers, setAllUsers] = useState([]);
   const [fetchData, setFetchData] = useState(false);
@@ -79,9 +80,7 @@ const RegisterdUsers = () => {
   
   
   const removeUser = async (userEmail) => {
-    const state=useContext(CartContext);
-      const baseURL=state.baseUrl
-     
+   
   const answer =await  showConfirmationToast();
   if(!answer)
   {
