@@ -21,12 +21,10 @@ export default function ProductInfo({ sku }) {
     console.log("Updated Cart:", cart);
   }, [cart]);
 
-  let [Color, setColor] = useState("");
-  useEffect(() => {
-    if (data?.length > 0 && data[0].colors?.length > 0) {
-      setColor(data[0].colors[0].toLowerCase());
-    }
-  }, [data]);
+  
+  const [Color,setColor]=useState("")
+
+ 
 
   console.log(data)
   let [count, setCount] = useState(0);
@@ -36,16 +34,13 @@ export default function ProductInfo({ sku }) {
   let [Size, setSize] = useState("M");
 
   const addToCart = async () => {
-    if (Color === null) {
-      toast.error("Select Color");
-      exit;
-    }
+  
 
     let productInCart = {
       productId: data[0].sku,
       name: data[0].name,
       size: Size,
-      color: Color,
+      color: Color||data[0]?.colors[0]?.toLocaleLowerCase(),
       quantity: Quantity,
       price: data[0].price||data[0].discountPrice,
       image: data[0].images[0].url,

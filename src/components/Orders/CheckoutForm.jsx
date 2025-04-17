@@ -7,14 +7,13 @@ import { jwtDecode } from "jwt-decode";
 import { loadStripe } from "@stripe/stripe-js";
 
 export default function CheckoutForm() {
-
   const cartState = useContext(CartContext);
   const checkoutItems = cartState.cart;
-  const baseURL=cartState.baseUrl
-  const setCart=cartState.setCart;
+  const baseURL = cartState.baseUrl;
+  const setCart = cartState.setCart;
   const token = localStorage.getItem("userToken");
   const [email, setEmail] = useState("");
-  const [loading , setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [shippingAddress, setShippingAddress] = useState({
     firstName: "",
@@ -28,14 +27,13 @@ export default function CheckoutForm() {
 
   let total = () => {
     if (!checkoutItems || checkoutItems.length < 1) return 0;
-  
+
     let result = checkoutItems.reduce((acc, item) => {
-      return acc + (item.price * item.quantity);
+      return acc + item.price * item.quantity;
     }, 0);
-  
+
     return Math.round(result * 100) / 100; // Round to 2 decimal places
   };
-  
 
   useEffect(() => {
     if (token) {
@@ -51,17 +49,17 @@ export default function CheckoutForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(shippingAddress);
-  
+
     if (!token) {
       handleError("Please log in to continue!");
       setTimeout(() => navigate("/login"), 2000);
       return;
     }
-  
+
     if (checkoutItems.length === 0) {
       return handleError("Your cart is empty. Please add at least one item.");
     }
-  
+
     if (
       !shippingAddress.firstName ||
       !shippingAddress.country ||
@@ -71,13 +69,14 @@ export default function CheckoutForm() {
     ) {
       return handleError("Please fill in all required shipping details.");
     }
-  
+
     try {
       setLoading(true);
-  
-      const stripe = await loadStripe("pk_test_51R69t62ML9Uo6lrtxgXbKk6e1PLTCJ8D0S7rKWgqNPCLbt2sPQi73P4nqAQlnMPMKSUkp9zlpKmyAtViNkA4mXTx00zAIydbAt");
-     
-    
+
+      const stripe = await loadStripe(
+        "pk_test_51R69t62ML9Uo6lrtxgXbKk6e1PLTCJ8D0S7rKWgqNPCLbt2sPQi73P4nqAQlnMPMKSUkp9zlpKmyAtViNkA4mXTx00zAIydbAt"
+      );
+
       const response = await fetch(`${baseURL}/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -85,28 +84,23 @@ export default function CheckoutForm() {
           email,
           checkoutItems,
           shippingAddress,
-          totalPrice:total()
+          totalPrice: total(),
         }),
       });
 
-     
-  
-      const data = await response.json(); 
-  
+      const data = await response.json();
+
       if (data.success) {
         handleSuccess("Redirecting to Payment..");
         setCart([]);
         const session = await stripe.redirectToCheckout({
           sessionId: data.sessionId,
-        
         });
-  
+
         if (session.error) {
           console.error("Stripe error:", session.error.message);
           handleError("Something went wrong! Please try again.");
-
         }
-       
       } else {
         handleError(data.message);
       }
@@ -117,9 +111,7 @@ export default function CheckoutForm() {
       setLoading(false);
     }
   };
-    
-    
-  
+
   return (
     <>
       <div className="bg-white w-full py-4 px-2  lg:px-4 ">
@@ -173,7 +165,6 @@ export default function CheckoutForm() {
                   type="text"
                   id="lastName"
                   name="lastName"
-
                   placeholder="Optional"
                   onChange={(e) =>
                     setShippingAddress({
@@ -229,7 +220,7 @@ export default function CheckoutForm() {
                   type="text"
                   id="postalCode"
                   name="postalCode"
-                   placeholder="Optional"
+                  placeholder="Optional"
                   onChange={(e) =>
                     setShippingAddress({
                       ...shippingAddress,
@@ -279,8 +270,10 @@ export default function CheckoutForm() {
           <div className="w-full mt-4 ">
             <input
               type="submit"
-              className={`w-full bg-black text-white font-semibold py-2 hover:opacity-70 tracking-normal cursor-pointer ${loading?"bg-opacity-70":""}`}
-              value={loading?"Processing":"Continue to process"}
+              className={`w-full bg-black text-white font-semibold py-2 hover:opacity-70 tracking-normal cursor-pointer ${
+                loading ? "bg-opacity-70" : ""
+              }`}
+              value={loading ? "Processing" : "Continue to process"}
               disabled={loading}
             />
           </div>
@@ -289,4 +282,3 @@ export default function CheckoutForm() {
     </>
   );
 }
-;
